@@ -3,11 +3,15 @@ const app = express()
 
 require('dotenv').config()
 
+app.use(express.json())
+
 const PORT = process.env.PORT || 3003
 
+const clothingController = require('./controllers/clothing')
+app.use('/clothing', clothingController)
 
 app.get('/', (req, res) => {
-    res.send('<h1>Express is connected!</h1>')
+    res.json({'message':'Express is connected!'})
 })
 
 app.listen(PORT, () => {
